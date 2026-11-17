@@ -1,74 +1,210 @@
-<!DOCTYPE html>
-<html lang="pt-br">
 
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de senha</title>
+    <meta name="theme-color" content="#071426">
+    <title>NanoMedice - O Futuro Está em Suas Mãos</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <section class="conteudo">
-        <div class="conteudo-titulo">
-            <img src="unlock.svg" alt="cadeado fechado">
-            <h2 class="titulo-principal">Gerador de senhas</h2>
-            <h3 class="titulo-secundario">Gere instantaneamente uma senha aleatória e segura</h3>
-        </div>
-        <div class="conteudo-senha">
-            <label for="senha">Senha</label>
-          <input name="senha" type="text" id="campo-senha" readonly>
-        </div>
-        <div class="parametro">
-            <h3 class="parametro-titulo">Personalize sua senha</h3>
-            <div class="parametro-coluna__senha">
-               <div class="parametro-senha">
-    <h4 class="parametro-senha__titulo">Número de caracteres</h4>
-    <div class="parametro-senha-botoes">
-        <button class="parametro-senha__botao">-</button>
-        <p class="parametro-senha__texto">12</p>
-        <button class="parametro-senha__botao">+</button>
-    </div>
-</div>  
-                <div class="parametro-senha">
-    <h4 class="parametro-senha__titulo">Características da senha</h4>
-    <div class="parametro-senha-checkbox">
-        <input name="maiusculo" type="checkbox" class="checkbox" checked>
-        <label for="maiusculo">Letras maiúsculas</label>
-    </div>
-    <div class="parametro-senha-checkbox">
-        <input name="minusculo" type="checkbox" class="checkbox">
-        <label for="minusculo">Letras minúsculas</label>
-    </div>
-    <div class="parametro-senha-checkbox">
-        <input name="numero" type="checkbox" class="checkbox">
-        <label for="numero">Números</label>
-    </div>
-    <div class="parametro-senha-checkbox">
-        <input name="simbolo" type="checkbox" class="checkbox">
-        <label for="simbolo">Símbolos</label>
-    </div>
-</div>
-  <div class="parametro-senha">
-    <h4 class="parametro-senha__titulo">Força da senha</h4>
-    <div class="barra"></div>
-    <div class="forca fraca"></div>
-    <div class="parametro-senha-textos">
-        <p>Fraca</p>
-        <p>Média</p>
-        <p>Forte</p>
-    </div>
-</div>
+
+    <div class="background-effects"></div>
+
+    <header class="topbar">
+        <div class="logo">Nano<span>Medice</span></div>
+        <div class="subtitle">TECNOLOGIA E SAÚDE</div>
+    </header>
+
+    <main id="game">
+
+        <!-- MENU INICIAL -->
+        <section id="menu" class="screen active">
+            <div class="hero">
+                <div class="tag">ANO 2050 • UMA NOVA ERA</div>
+                <h1>Nano<span>Medice</span></h1>
+                <h2>O FUTURO ESTÁ EM SUAS MÃOS</h2>
+                <p>
+                    A tecnologia pode salvar a humanidade.
+                    Mas uma escolha errada pode mudar tudo.
+                </p>
+
+                <button class="primary-btn" onclick="startIntro()">
+                    INICIAR JOGO
+                </button>
+
+                <button class="secondary-btn" onclick="showScreen('instructions')">
+                    COMO JOGAR
+                </button>
+
+                <button class="secondary-btn" onclick="showScreen('credits')">
+                    CRÉDITOS
+                </button>
             </div>
-        </div>
-        <script src="main.js"></script>
+        </section>
 
+        <!-- COMO JOGAR -->
+        <section id="instructions" class="screen">
+            <div class="panel">
+                <div class="tag">MANUAL DO JOGADOR</div>
+                <h2>Como jogar?</h2>
+                <p>Você será Lucas, um jovem que precisa tomar decisões importantes dentro de uma empresa de tecnologia médica.</p>
+                <ul>
+                    <li>O jogo possui 10 fases.</li>
+                    <li>Cada fase possui 3 alternativas.</li>
+                    <li>Apenas uma alternativa é a mais responsável.</li>
+                    <li>Você pode voltar e revisar suas respostas.</li>
+                    <li>Três erros consecutivos causam Game Over.</li>
+                    <li>Seu desempenho determina o final.</li>
+                </ul>
+                <button class="primary-btn" onclick="startIntro()">ENTENDI, COMEÇAR</button>
+                <button class="secondary-btn" onclick="showScreen('menu')">VOLTAR</button>
+            </div>
+        </section>
 
+        <!-- APRESENTAÇÃO DA HISTÓRIA -->
+        <section id="intro" class="screen">
+            <div class="panel">
+                <div class="tag">CAPÍTULO ZERO • 2050</div>
+                <h2>O começo de uma nova era</h2>
+                <p>
+                    Estamos no ano de 2050. A humanidade vive uma
+                    revolução tecnológica. Inteligências artificiais
+                    conseguem identificar doenças, robôs auxiliam
+                    médicos e dispositivos inteligentes monitoram
+                    a saúde da população.
+                </p>
+                <p>
+                    Você é Lucas, um jovem de 19 anos que acaba
+                    de conseguir uma oportunidade na NEXUS,
+                    uma das maiores empresas de tecnologia médica
+                    do mundo.
+                </p>
+                <p>
+                    Entretanto, durante seu primeiro dia, você
+                    descobre que algumas tecnologias estão sendo
+                    utilizadas de maneira perigosa.
+                </p>
+                <p class="highlight">
+                    Dez decisões. Três possíveis destinos.
+                    O futuro da humanidade está em suas mãos.
+                </p>
+                <button class="primary-btn" onclick="beginGame()">
+                    ENTRAR NA NEXUS →
+                </button>
+            </div>
+        </section>
 
+        <!-- TELA DAS PERGUNTAS -->
+        <section id="quiz" class="screen">
+            <div class="quiz-header">
+                <div>
+                    <div class="tag">MISSÃO NEXUS</div>
+                    <h2 id="phase-title">FASE 01</h2>
+                </div>
+                <div class="stats">
+                    <span id="score">Acertos: 0</span>
+                    <span id="mistakes">Erros seguidos: 0/3</span>
+                </div>
+            </div>
 
+            <div class="progress-container" role="progressbar" aria-label="Progresso da história" aria-valuemin="0" aria-valuemax="10" aria-valuenow="1">
+                <div class="progress-bar" id="progress"></div>
+            </div>
 
+            <div class="panel">
+                <div id="phase-number" class="tag">FASE 01 / 10</div>
+                <h2 id="question-title"></h2>
+                <p id="question-story"></p>
 
-        
-    </section>
+                <div id="answers" class="answers"></div>
+
+                <div id="feedback" class="feedback" aria-live="polite"></div>
+
+                <div class="navigation">
+                    <button class="secondary-btn" id="back-btn" onclick="previousQuestion()">
+                        ← VOLTAR
+                    </button>
+                    <button class="primary-btn" id="next-btn" onclick="nextQuestion()" disabled>
+                        PRÓXIMA →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL -->
+        <section id="ending" class="screen">
+            <div class="panel ending-panel">
+                <div class="tag">RELATÓRIO FINAL NEXUS</div>
+                <div id="ending-icon" class="ending-icon">🏆</div>
+                <h1 id="ending-title"></h1>
+                <p id="ending-text"></p>
+                <div id="final-score" class="final-score"></div>
+                <button class="primary-btn" onclick="showScreen('credits')">
+                    VER CRÉDITOS
+                </button>
+                <button class="secondary-btn" onclick="restartGame()">
+                    JOGAR NOVAMENTE
+                </button>
+                <button class="secondary-btn" onclick="showScreen('menu')">
+                    MENU INICIAL
+                </button>
+            </div>
+        </section>
+
+        <!-- GAME OVER -->
+        <section id="gameover" class="screen">
+            <div class="panel ending-panel">
+                <div class="ending-icon">☠️</div>
+                <div class="tag">SISTEMA NEXUS INTERROMPIDO</div>
+                <h1 class="danger">GAME OVER</h1>
+                <p>
+                    Você cometeu três erros consecutivos.
+                    Suas decisões colocaram a segurança dos
+                    pacientes em risco e a NEXUS encerrou sua missão.
+                </p>
+                <p id="gameover-score"></p>
+                <button class="primary-btn" onclick="restartGame()">
+                    TENTAR NOVAMENTE
+                </button>
+                <button class="secondary-btn" onclick="showScreen('credits')">
+                    VER CRÉDITOS
+                </button>
+                <button class="secondary-btn" onclick="showScreen('menu')">
+                    MENU INICIAL
+                </button>
+            </div>
+        </section>
+
+        <!-- CRÉDITOS -->
+        <section id="credits" class="screen">
+            <div class="panel ending-panel">
+                <div class="tag">PROJETO NANOMEDICE</div>
+                <h1>CRÉDITOS</h1>
+                <p><strong>Desenvolvimento:</strong><br>DIEGO ALENCAR E MURILO MANOSSO</p>
+                <p><strong>História e conceito:</strong><br>Tecnologia e Saúde</p>
+                <p><strong>Programação:</strong><br>HTML, CSS e JavaScript</p>
+                <p><strong>Mensagem do jogo:</strong><br>
+                    A tecnologia deve estar a serviço da humanidade,
+                    e não substituir a responsabilidade humana.
+                </p>
+                <h3>OBRIGADO POR JOGAR!</h3>
+                <button class="primary-btn" onclick="showScreen('menu')">
+                    VOLTAR AO MENU
+                </button>
+                <button class="secondary-btn" onclick="restartGame()">
+                    JOGAR NOVAMENTE
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        NanoMedice © 2050 | NEXUS TECHNOLOGIES
+    </footer>
+
+    <script src="main.js"></script>
 </body>
 </html>
