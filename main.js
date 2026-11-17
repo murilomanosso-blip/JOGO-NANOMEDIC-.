@@ -299,15 +299,18 @@ function selectAnswer(optionId) {
 
     // Três erros consecutivos encerram a missão.
     if (consecutiveErrors >= 3) {
-
-        document.getElementById("gameover-score").textContent =
-            `Acertos até o momento: ${totalCorrect}`;
-
-        showScreen("gameover");
+        showGameOver();
         return;
     }
 
     renderQuestion(false);
+}
+
+function showGameOver() {
+    document.getElementById("gameover-score").textContent =
+        `Acertos até o momento: ${totalCorrect}`;
+
+    showScreen("gameover");
 }
 
 
@@ -357,6 +360,13 @@ function previousQuestion() {
 function nextQuestion() {
 
     if (!answers[currentQuestion]) return;
+
+    calculateStats(currentQuestion);
+
+    if (consecutiveErrors >= 3) {
+        showGameOver();
+        return;
+    }
 
     if (currentQuestion < questions.length - 1) {
 
